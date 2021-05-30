@@ -11,10 +11,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script>
 
-        function closeConnect() {
-            var serverModal = document.getElementById("serverModal");
-            serverModal.classList.toggle("is-active");
-        }
+
+
 
     </script>
 </head>
@@ -37,7 +35,7 @@
         </div>
         <hr class="devider">
         <div class="columns is-multiline has-fullwidth" id="sec">
-           
+
         </div>
     </div>
 
@@ -52,6 +50,15 @@
             <p>Connection To Server...</p>
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div class="modal" id="shareModal">
+        <div class="modal-background" onclick="closeShare()"></div>
+        <div class="modal-content has-text-centered notification is-white">
+            <input type="text" id="link" class="input" style="max-width: 90%;"><button onclick="copyToCliBoard()" class="button mx-1"><i
+                    class="fas fa-copy"></i></button>
+        </div>
+        <button class="modal-close is-large" onclick="closeShare()" aria-label="close"></button>
     </div>
 
 
@@ -74,6 +81,35 @@
 
         }
         connect();
+
+        var shareModal = document.getElementById("shareModal");
+
+
+        function closeConnect() {
+            var serverModal = document.getElementById("serverModal");
+            serverModal.classList.toggle("is-active");
+        }
+
+        function share(e) {
+            shareModal.classList.add("is-active");
+
+            var link = document.getElementById("link");
+
+            link.value = e.srcElement.parentElement.firstElementChild.href;
+
+        }
+
+        function copyToCliBoard() {
+            var copyText = document.getElementById("link");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+            document.execCommand("copy");
+        }
+
+        function closeShare() {
+            shareModal.classList.remove("is-active");
+        }
+
     </script>
 </body>
 
