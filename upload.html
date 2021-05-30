@@ -95,11 +95,21 @@
     <div class="modal" id="doneModal">
         <div class="modal-background"></div>
         <div class="modal-content has-text-centered notification is-white">
-            <p class="title is-2">Uploaded Successfully</p>
+            <p class="title is-3">Uploaded Successfully</p>
 
-            <a class="button"></a>
+            <a href="./index.html" class="button is-success is-large">Home</a>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
+        <a href="./index.html" class="modal-close is-success is-large" aria-label="close"></a>
+    </div>
+
+    <div class="modal" id="errorModal">
+        <div class="modal-background"></div>
+        <div class="modal-content has-text-centered notification is-danger">
+            <p class="title is-3">Error</p>
+
+            <a href="./index.html" class="button is-warning is-large">Home</a>
+        </div>
+        <a href="./index.html" class="modal-close is-success is-large" aria-label="close"></a>
     </div>
 
     <script>
@@ -107,6 +117,8 @@
         var file, accept, heading, about;
         var uploadingModal = document.getElementById("uploadingModal");
         var doneModal = document.getElementById("doneModal");
+        var errorModal = document.getElementById("errorModal");
+
         var formData = new FormData();
         function onFileSelect() {
             file = document.querySelector('#file');
@@ -136,6 +148,7 @@
                     uploadingModal.classList.toggle("is-active");
                     doneModal.classList.toggle("is-active");
                 }).catch(err => {
+                    errorModal.classList.toggle("is-active");
                     console.log(err)
                 })
             }
