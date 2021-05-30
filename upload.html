@@ -10,23 +10,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script>
-        axios.get('https://tourmaline-cream-forgery.glitch.me/joinrqs')
-            .then(res => {
-                console.log(res.data);
-            });
-
-        axios.post('http://localhost:3000/get', { data: "hello" })
-            .then(res => {
-                console.log(res.data)
-            })
-
-            function showName(){
-                var file = document.getElementById("file");
-                var label = document.getElementById("label");
-               var path = file.value;
-               var name = path.split("\\")
-               label.innerText = name[name.length - 1];
-            }
+        function showName() {
+            var file = document.getElementById("file");
+            var label = document.getElementById("label");
+            var path = file.value;
+            var name = path.split("\\")
+            label.innerText = name[name.length - 1];
+        }
 
 
     </script>
@@ -35,13 +25,14 @@
 <body>
     <div class="container has-background-light p-6">
         <h1 class="title has-text-centered">Upload College Notes And Assignment</h1>
-        <h1 class="title is-overlay"><button onclick="history.back()" class="button is-light"><i class="fa fa-backward" aria-hidden="true"></i></button></h1>
+        <h1 class="title is-overlay"><button onclick="history.back()" class="button is-light"><i class="fa fa-backward"
+                    aria-hidden="true"></i></button></h1>
 
-        <form action="">
+        <form action="" id="form">
             <div class="field">
                 <label class="label">Heading For File</label>
                 <div class="control">
-                    <input class="input" maxlength="40" type="text"
+                    <input class="input" id="heading" required maxlength="40" type="text"
                         placeholder="Eg. TOC Assignment 1, MPI Lab Record Exp 1-6 etc...">
                 </div>
             </div>
@@ -49,14 +40,16 @@
             <div class="field">
                 <label class="label">About</label>
                 <div class="control">
-                    <textarea class="textarea" placeholder="About the File or Some instructions to follow for the perticular file"></textarea>
+                    <textarea required class="textarea"
+                        placeholder="About the File or Some instructions to follow for the perticular file"
+                        id="about"></textarea>
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
                     <label class="checkbox">
-                        <input type="checkbox">
+                        <input type="checkbox" id="accept" required>
                         I agree to the <a href="terms.html">terms and conditions</a>
                     </label>
                 </div>
@@ -66,7 +59,8 @@
 
                 <div class="file has-name is-boxed">
                     <label class="file-label">
-                        <input class="file-input" onchange="showName()" id="file" type="file" name="file">
+                        <input class="file-input" onchange="showName(); onFileSelect();" id="file" required type="file"
+                            name="file">
                         <span class="file-cta">
                             <span class="file-icon">
                                 <i class="fas fa-upload"></i>
@@ -76,13 +70,51 @@
                             </span>
                         </span>
                         <span class="file-name is-fullwidth" id="label">
-                            
+
                         </span>
                     </label>
                 </div>
             </div>
+            <div class="feild">
+                <input type="submit" value="Upload" class="button is-medium is-success ">
+            </div>
         </form>
     </div>
+
+    <script>
+
+        var file, accept, heading, about;
+        var formData = new FormData();
+        function onFileSelect() {
+            file = document.querySelector('#file');
+        }
+
+        var form = document.getElementById("form");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            formData.delete("heading")
+            formData.delete("heading")
+            formData.delete("file")
+            if (document.getElementById("accept").value) {
+                heading = document.getElementById("heading").value;
+                about = document.getElementById("about").value;
+                formData.append("heading", heading);
+                formData.append("about", about);
+                formData.append("file", file.files[0])
+                console.log(formData, file.files[0])
+
+                axios.post('http://localhost:3000/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then((val) => {
+                    console.log(val)
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+        })
+    </script>
 </body>
 
 </html>
