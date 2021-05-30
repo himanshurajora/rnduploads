@@ -17,8 +17,6 @@
             var name = path.split("\\")
             label.innerText = name[name.length - 1];
         }
-
-
     </script>
 </head>
 
@@ -79,6 +77,29 @@
                 <input type="submit" value="Upload" class="button is-medium is-success ">
             </div>
         </form>
+    </div>
+
+    <div class="modal is-active" id="uploadingModal">
+        <div class="modal-background"></div>
+        <div class="modal-content has-text-centered notification is-white">
+            <p>Uploading</p>
+
+            <button class="button is-large is-white is-loading px-6">
+            
+            </button>
+            <p>Please Wait...</p>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div class="modal is-active" id="doneModal">
+        <div class="modal-background"></div>
+        <div class="modal-content has-text-centered notification is-white">
+            <p class="title is-2">Uploaded Successfully</p>
+
+            <a class="button"></a>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
     <script>
