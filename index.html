@@ -16,14 +16,6 @@
         serverModal.classList.toggle("is-active");
        }
 
-        axios.post('http://localhost:3000/get', { data: "hello" })
-            .then(res => {
-                console.log(res.data)
-            })
-
-
-
-
     </script>
 </head>
 
@@ -134,11 +126,10 @@
         //connecting to server modal
         function connect(){
 
-         axios.get('https://tourmaline-cream-forgery.glitch.me/joinrqs')
+         axios.get('http://localhost:3000/get')
             .then(res => {
                 console.log(res.data);
                 closeConnect();
-                console.log("Connected");
             });
 
         }
