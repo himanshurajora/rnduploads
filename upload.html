@@ -79,7 +79,7 @@
         </form>
     </div>
 
-    <div class="modal is-active" id="uploadingModal">
+    <div class="modal" id="uploadingModal">
         <div class="modal-background"></div>
         <div class="modal-content has-text-centered notification is-white">
             <p>Uploading</p>
@@ -92,7 +92,7 @@
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
-    <div class="modal is-active" id="doneModal">
+    <div class="modal" id="doneModal">
         <div class="modal-background"></div>
         <div class="modal-content has-text-centered notification is-white">
             <p class="title is-2">Uploaded Successfully</p>
@@ -105,6 +105,8 @@
     <script>
 
         var file, accept, heading, about;
+        var uploadingModal = document.getElementById("uploadingModal");
+        var doneModal = document.getElementById("doneModal");
         var formData = new FormData();
         function onFileSelect() {
             file = document.querySelector('#file');
@@ -117,6 +119,7 @@
             formData.delete("heading")
             formData.delete("file")
             if (document.getElementById("accept").value) {
+                uploadingModal.classList.toggle("is-active");
                 heading = document.getElementById("heading").value;
                 about = document.getElementById("about").value;
                 formData.append("heading", heading);
@@ -130,6 +133,8 @@
                     }
                 }).then((val) => {
                     console.log(val)
+                    uploadingModal.classList.toggle("is-active");
+                    doneModal.classList.toggle("is-active");
                 }).catch(err => {
                     console.log(err)
                 })
