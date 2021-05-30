@@ -67,7 +67,7 @@
         //connecting to server modal
         function connect() {
             var sec = document.getElementById("sec");
-            axios.get('http://localhost:3000/get')
+            axios.get('https://potent-gilded-base.glitch.me/get')
                 .then(res => {
                     res.data.forEach((note) => {
                         var child = document.createElement("div");
