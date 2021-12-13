@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URND</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <script>
+        axios.get('https://tourmaline-cream-forgery.glitch.me/joinrqs')
+            .then(res => {
+                console.log(res.data);
+            });
+
+        axios.post('http://localhost:3000/get', {
+            data: "hello"
+        })
+            .then(res => {
+                console.log(res.data)
+            })
+
+        function showName() {
+            var file = document.getElementById("file");
+            var label = document.getElementById("label");
+            var path = file.value;
+            var name = path.split("\\")
+            label.innerText = name[name.length - 1];
+        }
+    </script>
+</head>
+
+<body>
+    <div class="notification is-primary is-light p-6">
+        <h1 class="title is-overlay"><button onclick="history.back()" class="button is-primary is-light"><i
+                    class="fa fa-backward" aria-hidden="true"></i></button></h1>
+        <h1 class="title has-text-centered">Terms</h1>
+        <div class="notification is-3 is-primary is-light">
+            <p class="title is-6">
+                # Uploads Notes and Assignments ### RND Uploads? <br> You might be wondering that why the name of this
+                repository is "rnduploads"? <br> The answer is that I was going to make something for my research and
+                development data. And I wanted
+                to store everything in one place. That's why I named it "rnduploads". <br> Well that Idea just broke
+                down because I leaked the repository before I could finish it and someone else gave me an idea that I
+                should create something to upload
+                notes and assignments. Then I just changed the goal but didn't change the name. <br> Moving on... Well
+                This project uses Node.js and Express.js as the server and MongoDB as the database and Azure Blob
+                Storage as the storage. I hosted the
+                serverside code on Glitch.com and the database on An website that I don't know the name of. <br> This is
+                the client side code. Server side code is in another repository named "rndbackend". <br> Alright, that's
+                it. I hope you enjoy this
+                project. See ya. <br> Made by Vedik Dev : Himanshu Jangid <br> VCF Loves You all Bye
+            </p>
+        </div>
+
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Upload Notes</strong> by <a href="http://vcfstudio.in">VCF</a>
+                    <br>
+                <p>For Devs By Devs</p>
+                </p>
+                <p>
+                    <a class="icon" href="https://github.com/jgthms/bulma">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
