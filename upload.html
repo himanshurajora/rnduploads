@@ -30,17 +30,14 @@
             <div class="field">
                 <label class="label">Heading For File</label>
                 <div class="control">
-                    <input class="input" id="heading" required maxlength="40" type="text"
-                        placeholder="Eg. TOC Assignment 1, MPI Lab Record Exp 1-6 etc...">
+                    <input class="input" id="heading" required maxlength="40" type="text" placeholder="Eg. TOC Assignment 1, MPI Lab Record Exp 1-6 etc...">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">About</label>
                 <div class="control">
-                    <textarea required class="textarea"
-                        placeholder="About the File or Some instructions to follow for the perticular file"
-                        id="about"></textarea>
+                    <textarea required class="textarea" placeholder="About the File or Some instructions to follow for the perticular file" id="about"></textarea>
                 </div>
             </div>
 
@@ -113,13 +110,13 @@
     </div>
 
     <script>
-
         var file, accept, heading, about;
         var uploadingModal = document.getElementById("uploadingModal");
         var doneModal = document.getElementById("doneModal");
         var errorModal = document.getElementById("errorModal");
 
         var formData = new FormData();
+
         function onFileSelect() {
             file = document.querySelector('#file');
         }
@@ -137,14 +134,14 @@
                 formData.append("heading", heading);
                 formData.append("about", about);
                 formData.append("file", file.files[0])
-                console.log(formData, file.files[0])
 
-                axios.post('https://potent-gilded-base.glitch.me/upload', formData, {
+                var url = 'https://potent-gilded-base.glitch.me/upload'
+                var local = 'http://localhost:3000/upload'
+                axios.post(url, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 }).then((val) => {
-                    console.log(val)
                     uploadingModal.classList.toggle("is-active");
                     doneModal.classList.toggle("is-active");
                 }).catch(err => {

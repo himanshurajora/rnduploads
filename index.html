@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script>
-
-
-
-
     </script>
 </head>
 
@@ -63,11 +59,12 @@
 
 
     <script>
-
         //connecting to server modal
         function connect() {
             var sec = document.getElementById("sec");
-            axios.get('https://potent-gilded-base.glitch.me/get')
+            var url = 'https://potent-gilded-base.glitch.me/get'
+            var local = 'http://localhost:3000/get'
+            axios.get(url)
                 .then(res => {
                     res.data.forEach((note) => {
                         var child = document.createElement("div");
@@ -109,7 +106,6 @@
         function closeShare() {
             shareModal.classList.remove("is-active");
         }
-
     </script>
 </body>
 
